@@ -1,6 +1,6 @@
 import * as AdmZip from 'adm-zip';
 import { buffer } from 'imagemin';
-import imageminPngquant from 'imagemin-pngquant';
+// import imageminPngquant from 'imagemin-pngquant';
 import { Express } from 'express';
 import { Job, DoneCallback } from 'bull';
 
@@ -11,9 +11,9 @@ async function imageProcessor(job: Job, doneCallback: DoneCallback) {
     const fileBuffer = Buffer.from(file.buffer);
     return buffer(fileBuffer, {
       plugins: [
-        imageminPngquant({
-          quality: [0.6, 0.8],
-        }),
+        // imageminPngquant({
+        //   quality: [0.6, 0.8],
+        // }),
       ],
     });
   });

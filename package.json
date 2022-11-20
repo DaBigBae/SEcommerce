@@ -1,8 +1,8 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "SEcommerce",
   "private": true,
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "SEcommerce base on Nest TypeScript starter repository",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",

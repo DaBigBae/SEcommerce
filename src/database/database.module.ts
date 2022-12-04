@@ -17,7 +17,9 @@ import Address from '../users/address.entity';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [Address],
+        entities: [
+          Address
+        ],
         synchronize: true,
         autoLoadEntities: true,
       }),

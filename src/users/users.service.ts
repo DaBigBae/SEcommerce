@@ -57,17 +57,17 @@ export class UsersService {
   }
 
   async create(userData: CreateUserDto) {
-    const stripeCustomer = await this.stripeService.createCustomer(
-      userData.name,
-      userData.email,
-    );
+    // const stripeCustomer = await this.stripeService.createCustomer(
+    //   userData.name,
+    //   userData.email,
+    // );
 
     const newUser = await this.usersRepository.create({
       ...userData,
-      stripeCustomerId: stripeCustomer.id,
+      // stripeCustomerId: stripeCustomer.id,
     });
-    await this.usersRepository.save(newUser);
-    return newUser;
+
+    return await this.usersRepository.save(newUser);
   }
 
   async createWithGoogle(email: string, name: string) {

@@ -16,12 +16,14 @@ export class AuthenticationService {
   ) {}
 
   public async register(registrationData: RegisterDto) {
-    const hashedPassword = await bcrypt.hash(registrationData.password, 10);
+    console.log(registrationData);
+    const hashedPassword = await bcrypt.hash(registrationData.password, 6);
     try {
       const createdUser = await this.usersService.create({
         ...registrationData,
         password: hashedPassword,
       });
+      console.log("data transfer: " + createdUser);
       createdUser.password = undefined;
       return createdUser;
     } catch (error) {

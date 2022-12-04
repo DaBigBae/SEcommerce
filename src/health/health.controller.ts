@@ -22,17 +22,17 @@ class HealthController {
   @HealthCheck()
   check() {
     return this.healthCheckService.check([
-      () => this.typeOrmHealthIndicator.pingCheck('database'),
+      async () => this.typeOrmHealthIndicator.pingCheck('database'),
       // the process should not use more than 300MB memory
-      () =>
+      async () =>
         this.memoryHealthIndicator.checkHeap('memory heap', 300 * 1024 * 1024),
       // The process should not have more than 300MB RSS memory allocated
-      () =>
+      async () =>
         this.memoryHealthIndicator.checkRSS('memory RSS', 300 * 1024 * 1024),
       // the used disk storage should not exceed the 50% of the available space
-      () =>
+      async () =>
         this.diskHealthIndicator.checkStorage('disk health', {
-          thresholdPercent: 0.5,
+          thresholdPercent: 0.9,
           path: '/',
         }),
       () => this.elasticsearchHealthIndicator.isHealthy('elasticsearch'),

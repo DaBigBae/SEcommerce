@@ -5,7 +5,7 @@ import {
   Post,
   Body,
   UseGuards,
-  Req,
+  Req, Query,
 } from '@nestjs/common';
 import ConfirmEmailDto from './confirmEmail.dto';
 import { EmailConfirmationService } from './emailConfirmation.service';
@@ -20,7 +20,7 @@ export class EmailConfirmationController {
   ) {}
 
   @Post('confirm')
-  async confirm(@Body() confirmationData: ConfirmEmailDto) {
+  async confirm(@Query() confirmationData: ConfirmEmailDto) {
     const email = await this.emailConfirmationService.decodeConfirmationToken(
       confirmationData.token,
     );

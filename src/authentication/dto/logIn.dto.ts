@@ -1,4 +1,4 @@
-import { IsEmail, IsString, IsNotEmpty, MinLength } from 'class-validator';
+import {IsEmail, IsString, IsNotEmpty, MinLength, MaxLength} from 'class-validator';
 
 export class LogInDto {
   @IsEmail()
@@ -6,7 +6,9 @@ export class LogInDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(7)
+  @MinLength(8,{
+    message: "Password is too weak."
+  })
   password: string;
 }
 

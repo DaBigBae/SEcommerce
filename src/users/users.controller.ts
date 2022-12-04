@@ -1,6 +1,6 @@
 import { UsersService } from './users.service';
 import {
-  BadRequestException,
+  BadRequestException, Body,
   Controller,
   Post,
   Req,

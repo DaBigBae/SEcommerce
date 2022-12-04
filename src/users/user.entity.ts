@@ -66,7 +66,7 @@ class User {
   @Column({ default: false })
   public isTwoFactorAuthenticationEnabled: boolean;
 
-  @Column()
+  @Column({nullable: true})
   public stripeCustomerId: string;
 
   @Column({ nullable: true })

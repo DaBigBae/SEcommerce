@@ -21,11 +21,11 @@ async function bootstrap() {
   app.use(cookieParser());
 
   const configService = app.get(ConfigService);
-  config.update({
-    accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
-    secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
-    region: configService.get('AWS_REGION'),
-  });
+  // config.update({
+  //   accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
+  //   secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
+  //   region: configService.get('AWS_REGION'),
+  // });
 
   app.enableCors({
     origin: configService.get('FRONTEND_URL'),
@@ -45,6 +45,8 @@ async function bootstrap() {
 
   const port = configService.get('PORT') ?? 3000;
 
-  await app.listen(port);
+  const server = await app.listen(port);
+  server.keepAliveTimeout = 200*1000;
+  server.headersTimeout = 205*1000;
 }
 bootstrap();

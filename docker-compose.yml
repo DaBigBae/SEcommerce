@@ -1,16 +1,37 @@
-version: "3"
+version: "3.7"
 services:
+#  main:
+#    container_name: main
+#    build:
+#      context: .
+#      target: development
+#    volumes:
+#      - .:/usr/src/app
+#      - /usr/src/app/node_modules
+#    ports:
+#      - ${SERVER_PORT}:${SERVER_PORT}
+#      - 7123:7123
+#    command: npm run start:dev
+#    env_file:
+#      - .env
+#    networks:
+#      - mainse
+#    depends_on:
+#      - redis
+#      - postgres
+
   postgres:
     container_name: postgres
     image: postgres:latest
     ports:
       - "5432:5432"
     volumes:
-      - /data/postgres:/data/postgres
+      - postgres:/var/lib/postgresql/data
     env_file:
       - docker.env
     networks:
       - postgres
+    restart: unless-stopped
 
   pgadmin:
     links:
@@ -20,11 +41,12 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - /data/pgadmin:/root/.pgadmin
+      - pgadmin:/var/lib/pgadmin
     env_file:
       - docker.env
     networks:
       - postgres
+    restart: unless-stopped
 
   redis:
     image: "redis:alpine"
@@ -99,6 +121,8 @@ services:
 #      - elastic
 
 volumes:
+  postgres:
+  pgadmin:
   data01:
     driver: local
 #  data02:
@@ -107,6 +131,8 @@ volumes:
 #    driver: local
 
 networks:
+  mainse:
+    driver: bridge
   postgres:
     driver: bridge
   elastic:

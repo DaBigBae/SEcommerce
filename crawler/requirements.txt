@@ -1,0 +1,4 @@
+itemadapter==0.3.0
+lorem_text==2.1
+Scrapy==2.6.2
+scrapy_splash==0.8.0

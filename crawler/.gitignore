@@ -1,0 +1,4 @@
+data/*.json
+__pycache__/
+crawler/spiders/test.py
+crawler/spiders/testv2.py

@@ -54,6 +54,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
         playground: Boolean(configService.get('GRAPHQL_PLAYGROUND')),
         autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
         installSubscriptionHandlers: true,
+        sortSchema: true,
         cache: 'bounded',
       }),
     }),

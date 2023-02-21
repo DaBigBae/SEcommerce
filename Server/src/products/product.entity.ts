@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import ProductCategory from '../productCategories/productCategory.entity';
-import { CarProperties } from './types/carProperties.interface';
-import { BookProperties } from './types/bookProperties.interface';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, UpdateDateColumn, CreateDateColumn, JoinColumn } from 'typeorm';
+import ProductCategory from '../productCategories/productCategories.entity';
+// import { CarProperties } from './types/carProperties.interface';
+// import { BookProperties } from './types/bookProperties.interface';
 
 @Entity()
 class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   public id: number;
 
   @Column()
@@ -17,28 +17,35 @@ class Product {
   )
   public category: ProductCategory;
 
-  @Column({
-    type: 'jsonb',
-  })
-  public properties: CarProperties | BookProperties;
+  @Column({type: "text", array: true, nullable: true})
+  public img: string[];
+
+  @Column() 
+  public thumbnail: string;
 
   @Column()
   public brand: string;
 
   @Column()
-  public currency: string;
+  public currency: number;
 
   @Column()
   public sku: string;
 
   @Column()
-  public price: string;
+  public price: number;
 
   @Column()
   public vote: number;
 
   @Column()
   public description: string;
+
+  @CreateDateColumn()
+  public createdAt: Date;
+
+  @UpdateDateColumn()
+  public updatedAt: Date;
 }
 
 export default Product;

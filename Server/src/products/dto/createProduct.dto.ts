@@ -5,11 +5,15 @@ import ObjectWithIdDTO from '../../utils/types/objectWithId.dto';
 export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  title: string;
 
-  @ValidateNested()
-  @Type(() => ObjectWithIdDTO)
-  category: ObjectWithIdDTO;
+  // @ValidateNested()
+  // @Type(() => ObjectWithIdDTO)
+  // category: ObjectWithIdDTO;
+
+  currency: number;
+
+  price: number;
 }
 
 export default CreateProductDto;
